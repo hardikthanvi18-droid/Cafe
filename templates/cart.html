@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-serif font-bold text-[#3D3035] mb-8">Your Joy Basket</h1>
+
+    {% if calc.items %}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Cart Items -->
+        <div class="lg:col-span-2 space-y-4">
+            {% for item in calc.items %}
+            <div class="bg-white p-4 rounded-2xl border border-[#F0DDE5] flex items-center justify-between gap-4 shadow-sm">
+                <div class="flex items-center gap-4">
+                    <img src="{{ item.product.image_url }}" alt="{{ item.product.name }}" class="w-16 h-16 rounded-xl object-cover">
+                    <div>
+                        <h3 class="font-serif font-bold text-sm text-[#3D3035]">{{ item.product.name }}</h3>
+                        <p class="text-xs text-[#806F77]">₹{{ "%.2f"|format(item.unit_price) }} each</p>
+                        <a href="{{ url_for('cart.remove_from_cart', product_id=item.product.id) }}" class="text-[11px] text-red-500 hover:underline mt-1 inline-block">Remove</a>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <form action="{{ url_for('cart.update_cart') }}" method="POST" class="flex items-center">
+                        <input type="hidden" name="product_id" value="{{ item.product.id }}">
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" max="20" onchange="this.form.submit()" class="w-14 text-center text-xs py-1 border border-[#F0DDE5] rounded-lg">
+                    </form>
+                    <span class="text-sm font-bold text-[#3D3035] w-20 text-right">₹{{ "%.2f"|format(item.line_total) }}</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Coupon Code Section -->
+            <div class="bg-[#FFF5F8] p-4 rounded-2xl border border-[#F0DDE5] mt-6">
+                <form action="{{ url_for('cart.apply_coupon') }}" method="POST" class="flex items-center gap-2">
+                    <input type="text" name="code" value="{{ coupon_code or '' }}" placeholder="Enter Coupon Code (e.g. JOY15)" class="text-xs uppercase px-3 py-2 rounded-xl border border-[#F0DDE5] bg-white flex-grow focus:outline-none focus:border-[#C96F91]">
+                    <button type="submit" class="text-xs font-semibold px-4 py-2 bg-[#C96F91] text-white rounded-xl hover:bg-[#b05d7e]">Apply</button>
+                </form>
+                {% if calc.applied_coupon %}
+                <p class="text-xs text-emerald-600 mt-2 font-medium">✓ Coupon {{ calc.applied_coupon.code }} applied! (Saved ₹{{ "%.2f"|format(calc.discount_amount) }})</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] shadow-sm h-fit space-y-4">
+            <h2 class="font-serif font-bold text-lg text-[#3D3035]">Order Summary</h2>
+            <div class="space-y-2 text-xs text-[#806F77] border-b border-[#F0DDE5] pb-4">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span class="text-[#3D3035] font-semibold">₹{{ "%.2f"|format(calc.subtotal) }}</span>
+                </div>
+                {% if calc.discount_amount > 0 %}
+                <div class="flex justify-between text-emerald-600 font-medium">
+                    <span>Discount</span>
+                    <span>- ₹{{ "%.2f"|format(calc.discount_amount) }}</span>
+                </div>
+                {% endif %}
+                <div class="flex justify-between">
+                    <span>GST (5%)</span>
+                    <span class="text-[#3D3035]">₹{{ "%.2f"|format(calc.tax_amount) }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Delivery (if applicable)</span>
+                    <span class="text-[#3D3035]">₹{{ "%.2f"|format(calc.delivery_charge) }}</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between text-base font-bold text-[#3D3035] pt-2">
+                <span>Estimated Total</span>
+                <span class="text-[#C96F91]">₹{{ "%.2f"|format(calc.total) }}</span>
+            </div>
+
+            <a href="{{ url_for('orders.checkout') }}" class="block w-full text-center py-3.5 bg-[#C96F91] hover:bg-[#b05d7e] text-white text-xs font-semibold rounded-full shadow-md transition-colors">
+                Proceed to Checkout →
+            </a>
+            <p class="text-[11px] text-center text-[#806F77]">Taxes and final delivery fee recalculated at checkout</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-20 bg-[#FFF5F8] rounded-3xl border border-[#F0DDE5]">
+        <p class="text-4xl mb-3">🧺</p>
+        <h2 class="font-serif text-xl font-bold text-[#3D3035]">Your basket is empty</h2>
+        <p class="text-xs text-[#806F77] mt-1 max-w-sm mx-auto">Explore our handcrafted coffee, strawberry treats, and flaky pastries to fill your basket with happiness.</p>
+        <a href="{{ url_for('menu.menu_list') }}" class="inline-block mt-6 px-6 py-2.5 bg-[#C96F91] text-white text-xs font-semibold rounded-full hover:bg-[#b05d7e]">Browse Menu</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

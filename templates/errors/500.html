@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-4 py-20 text-center space-y-4">
+    <span class="text-4xl">🧁</span>
+    <h1 class="text-3xl font-serif font-bold text-[#3D3035]">500 Internal Error</h1>
+    <p class="text-xs text-[#806F77]">Our espresso machine had a tiny hiccup. Our café engineers are already looking into it.</p>
+    <a href="{{ url_for('main.index') }}" class="inline-block px-6 py-2.5 bg-[#C96F91] text-white text-xs font-semibold rounded-full">Return Home</a>
+</div>
+{% endblock %}

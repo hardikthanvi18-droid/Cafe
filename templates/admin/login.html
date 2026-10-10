@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-4 py-16">
+    <div class="bg-white p-8 rounded-3xl border border-[#F0DDE5] shadow-sm">
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-wider text-[#C96F91] font-bold">Admin Portal</span>
+            <h1 class="text-2xl font-serif font-bold text-[#3D3035] mt-1">Café Staff Sign In</h1>
+            <p class="text-xs text-[#806F77] mt-1">Access the live order stream, catalog, coupons, and financials.</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('admin.login') }}" class="space-y-4">
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Administrator Email</label>
+                <input type="email" name="email" required placeholder="admin@sipandjoycafe.com" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Administrator Password</label>
+                <input type="password" name="password" required placeholder="••••••••" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <button type="submit" class="w-full py-3 bg-[#C96F91] hover:bg-[#b05d7e] text-white text-xs font-semibold rounded-full shadow-md transition-colors">
+                Authorize Administrator Access
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

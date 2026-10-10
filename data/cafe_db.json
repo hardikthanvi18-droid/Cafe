@@ -1,0 +1,573 @@
+{
+  "categories": [
+    {
+      "id": "cat-1",
+      "name": "Hot Coffee",
+      "slug": "hot-coffee",
+      "description": "Freshly roasted espresso drinks made with love",
+      "icon": "Coffee"
+    },
+    {
+      "id": "cat-2",
+      "name": "Cold Coffee",
+      "slug": "cold-coffee",
+      "description": "Chilled brews, iced lattes & refreshing frappes",
+      "icon": "CupSoda"
+    },
+    {
+      "id": "cat-3",
+      "name": "Tea & Beverages",
+      "slug": "tea-beverages",
+      "description": "Artisanal floral teas, matcha & refreshing coolers",
+      "icon": "Sparkles"
+    },
+    {
+      "id": "cat-4",
+      "name": "Milkshakes",
+      "slug": "milkshakes",
+      "description": "Creamy, thick gourmet milkshakes topped with goodness",
+      "icon": "IceCream"
+    },
+    {
+      "id": "cat-5",
+      "name": "Desserts",
+      "slug": "desserts",
+      "description": "Delicate cakes, mousses, and decadent slices",
+      "icon": "Cake"
+    },
+    {
+      "id": "cat-6",
+      "name": "Bakery",
+      "slug": "bakery",
+      "description": "Freshly baked flaky croissants, tarts & cookies",
+      "icon": "Utensils"
+    },
+    {
+      "id": "cat-7",
+      "name": "Snacks",
+      "slug": "snacks",
+      "description": "Savory sourdough toasts, sandwiches & light bites",
+      "icon": "Sandwich"
+    }
+  ],
+  "products": [
+    {
+      "id": "prod-1",
+      "name": "Classic Cappuccino",
+      "slug": "classic-cappuccino",
+      "description": "Double shot of velvety espresso layered with silky steamed milk and dense velvety foam, dusted with organic cocoa powder.",
+      "price": 195,
+      "categoryId": "cat-1",
+      "categoryName": "Hot Coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Vegetarian",
+      "preparationTime": "5-7 mins",
+      "calories": 140,
+      "ingredients": [
+        "100% Arabica Espresso",
+        "Steamed Fresh Milk",
+        "Cocoa Powder Dust"
+      ],
+      "tags": [
+        "Best Seller",
+        "Espresso",
+        "Classic"
+      ]
+    },
+    {
+      "id": "prod-2",
+      "name": "Iced Caramel Latte",
+      "slug": "iced-caramel-latte",
+      "description": "Slow-dripped espresso poured over chilled whole milk and artisanal golden caramel drizzle, served over crystal ice cubes.",
+      "price": 240,
+      "categoryId": "cat-2",
+      "categoryName": "Cold Coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Vegetarian",
+      "preparationTime": "4-6 mins",
+      "calories": 220,
+      "ingredients": [
+        "Espresso Roast",
+        "Chilled Milk",
+        "Artisanal Caramel",
+        "Ice"
+      ],
+      "tags": [
+        "Iced",
+        "Sweet",
+        "Top Pick"
+      ]
+    },
+    {
+      "id": "prod-3",
+      "name": "Strawberry Milkshake",
+      "slug": "strawberry-milkshake",
+      "description": "Luscious fresh Mahabaleshwar strawberry puree blended with rich Madagascar vanilla ice cream and whipped cream cloud.",
+      "price": 260,
+      "categoryId": "cat-4",
+      "categoryName": "Milkshakes",
+      "imageUrl": "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Vegetarian",
+      "preparationTime": "5-8 mins",
+      "calories": 310,
+      "ingredients": [
+        "Fresh Strawberry Compote",
+        "Vanilla Bean Ice Cream",
+        "Whole Milk",
+        "Whipped Cream"
+      ],
+      "tags": [
+        "Signature Drink",
+        "Berry Lovely",
+        "Kids Favorite"
+      ]
+    },
+    {
+      "id": "prod-4",
+      "name": "Chocolate Brownie",
+      "slug": "chocolate-brownie",
+      "description": "Warm, fudgy Belgian dark chocolate brownie with a crisp crinkle top and decadent molten center, served with chocolate drizzle.",
+      "price": 180,
+      "categoryId": "cat-5",
+      "categoryName": "Desserts",
+      "imageUrl": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Eggless",
+      "preparationTime": "3-5 mins",
+      "calories": 290,
+      "ingredients": [
+        "70% Belgian Dark Chocolate",
+        "Cocoa Butter",
+        "Flour",
+        "Brown Sugar"
+      ],
+      "tags": [
+        "Eggless",
+        "Warm Treat",
+        "Decadent"
+      ]
+    },
+    {
+      "id": "prod-5",
+      "name": "Butter Croissant",
+      "slug": "butter-croissant",
+      "description": "Golden, flaky French pastry handcrafted with pure Normandy butter, laminated into 27 delicate airy layers.",
+      "price": 165,
+      "categoryId": "cat-6",
+      "categoryName": "Bakery",
+      "imageUrl": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Vegetarian",
+      "preparationTime": "Freshly Baked",
+      "calories": 260,
+      "ingredients": [
+        "French Wheat Flour",
+        "Cultured Butter",
+        "Yeast",
+        "Sea Salt"
+      ],
+      "tags": [
+        "Fresh Baked",
+        "Morning Bliss",
+        "Flaky"
+      ]
+    },
+    {
+      "id": "prod-6",
+      "name": "Strawberry Cheesecake",
+      "slug": "strawberry-cheesecake",
+      "description": "Silky smooth New York style cream cheese cake resting on a buttery graham crust, crowned with glazed ripe strawberries.",
+      "price": 290,
+      "categoryId": "cat-5",
+      "categoryName": "Desserts",
+      "imageUrl": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": true,
+      "dietary": "Eggless",
+      "preparationTime": "Chilled & Ready",
+      "calories": 340,
+      "ingredients": [
+        "Philadelphia Cream Cheese",
+        "Graham Cracker Crust",
+        "Organic Strawberry Glaze"
+      ],
+      "tags": [
+        "Chef Special",
+        "Eggless",
+        "Crowd Favorite"
+      ]
+    },
+    {
+      "id": "prod-7",
+      "name": "Rose Petal Latte",
+      "slug": "rose-petal-latte",
+      "description": "Signature pink drink: micro-foamed milk infused with organic Damask rose syrup, a single espresso shot, and dried rose petals.",
+      "price": 235,
+      "categoryId": "cat-1",
+      "categoryName": "Hot Coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Vegetarian",
+      "preparationTime": "5-7 mins",
+      "calories": 180,
+      "ingredients": [
+        "Damask Rose Extract",
+        "Espresso",
+        "Silky Oat/Dairy Milk",
+        "Rose Petals"
+      ],
+      "tags": [
+        "Instagrammable",
+        "Pink Floral",
+        "Unique"
+      ]
+    },
+    {
+      "id": "prod-8",
+      "name": "Japanese Matcha Cloud",
+      "slug": "japanese-matcha-cloud",
+      "description": "Ceremonial grade Uji matcha whisked with honey and topped over lightly sweetened cold foam and crushed pistachios.",
+      "price": 270,
+      "categoryId": "cat-3",
+      "categoryName": "Tea & Beverages",
+      "imageUrl": "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Vegan",
+      "preparationTime": "4-6 mins",
+      "calories": 160,
+      "ingredients": [
+        "Ceremonial Grade Matcha",
+        "Almond Milk",
+        "Agave",
+        "Cold Foam"
+      ],
+      "tags": [
+        "Antioxidant",
+        "Vegan",
+        "Zen"
+      ]
+    },
+    {
+      "id": "prod-9",
+      "name": "Belgian Truffle Mousse Cake",
+      "slug": "belgian-truffle-mousse-cake",
+      "description": "Velvety dark chocolate sponge layered with whipped ganache, dusted with cocoa and wrapped in chocolate collar.",
+      "price": 280,
+      "categoryId": "cat-5",
+      "categoryName": "Desserts",
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Eggless",
+      "preparationTime": "Chilled",
+      "calories": 360,
+      "ingredients": [
+        "Dark Chocolate Ganache",
+        "Moist Sponge",
+        "Cocoa Powder"
+      ],
+      "tags": [
+        "Eggless",
+        "Chocoholic"
+      ]
+    },
+    {
+      "id": "prod-10",
+      "name": "Avocado & Cream Cheese Sourdough",
+      "slug": "avocado-cream-cheese-sourdough",
+      "description": "Toasted artisanal country sourdough topped with herb cream cheese, hass avocado slices, cherry tomatoes, and microgreens.",
+      "price": 285,
+      "categoryId": "cat-7",
+      "categoryName": "Snacks",
+      "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Vegetarian",
+      "preparationTime": "8-10 mins",
+      "calories": 310,
+      "ingredients": [
+        "Sourdough Bread",
+        "Hass Avocado",
+        "Herb Cream Cheese",
+        "Cherry Tomatoes"
+      ],
+      "tags": [
+        "Healthy",
+        "Brunch Favorite"
+      ]
+    },
+    {
+      "id": "prod-11",
+      "name": "Vanilla Cinnamon Roll",
+      "slug": "vanilla-cinnamon-roll",
+      "description": "Freshly baked spiral pastry rolled with Ceylon cinnamon and brown sugar, generously glazed with warm vanilla bean icing.",
+      "price": 175,
+      "categoryId": "cat-6",
+      "categoryName": "Bakery",
+      "imageUrl": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Eggless",
+      "preparationTime": "Freshly Baked",
+      "calories": 330,
+      "ingredients": [
+        "Ceylon Cinnamon",
+        "Brown Sugar",
+        "Brioche Dough",
+        "Vanilla Glaze"
+      ],
+      "tags": [
+        "Warm & Gooey",
+        "Eggless"
+      ]
+    },
+    {
+      "id": "prod-12",
+      "name": "Peach & Hibiscus Iced Tea",
+      "slug": "peach-hibiscus-iced-tea",
+      "description": "Steeped ruby hibiscus flowers blended with juicy peach reduction and sprig of fresh mint over crushed ice.",
+      "price": 195,
+      "categoryId": "cat-3",
+      "categoryName": "Tea & Beverages",
+      "imageUrl": "https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=800&q=80",
+      "isAvailable": true,
+      "isFeatured": false,
+      "dietary": "Vegan",
+      "preparationTime": "3-4 mins",
+      "calories": 95,
+      "ingredients": [
+        "Hibiscus Petals",
+        "Peach Puree",
+        "Fresh Mint",
+        "Lemon Slice"
+      ],
+      "tags": [
+        "Refreshing",
+        "Caffeine Free",
+        "Floral"
+      ]
+    }
+  ],
+  "coupons": [
+    {
+      "code": "WELCOME10",
+      "discountType": "percentage",
+      "discountValue": 10,
+      "minOrderValue": 250,
+      "maxDiscount": 100,
+      "expiryDate": "2026-12-31T23:59:59.000Z",
+      "usageLimit": 500,
+      "timesUsed": 42,
+      "isActive": true,
+      "description": "10% off on your first order above ₹250 (Max ₹100)"
+    },
+    {
+      "code": "JOY15",
+      "discountType": "percentage",
+      "discountValue": 15,
+      "minOrderValue": 499,
+      "maxDiscount": 150,
+      "expiryDate": "2026-12-31T23:59:59.000Z",
+      "usageLimit": 300,
+      "timesUsed": 19,
+      "isActive": true,
+      "description": "15% celebration discount on orders above ₹499"
+    },
+    {
+      "code": "SWEETTREAT",
+      "discountType": "fixed",
+      "discountValue": 50,
+      "minOrderValue": 300,
+      "expiryDate": "2026-11-30T23:59:59.000Z",
+      "usageLimit": 200,
+      "timesUsed": 14,
+      "isActive": true,
+      "description": "Flat ₹50 off on sweet orders above ₹300"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord-1791615330943-5274",
+      "orderNumber": "SJ-20261010-5274",
+      "createdAt": "2026-10-10T06:55:30.943Z",
+      "updatedAt": "2026-10-10T06:55:30.943Z",
+      "customerName": "Pooja Hegde",
+      "customerEmail": "pooja@example.com",
+      "customerPhone": "9820099887",
+      "orderType": "Pickup",
+      "items": [
+        {
+          "productId": "prod-2",
+          "productName": "Iced Caramel Latte",
+          "unitPrice": 240,
+          "quantity": 1,
+          "lineTotal": 240,
+          "imageUrl": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "subtotal": 240,
+      "taxRate": 0.05,
+      "taxAmount": 12,
+      "deliveryCharge": 0,
+      "discountAmount": 0,
+      "totalAmount": 252,
+      "paymentMethod": "Cash on pickup",
+      "paymentStatus": "Pending",
+      "orderStatus": "Pending",
+      "statusHistory": [
+        {
+          "status": "Pending",
+          "timestamp": "2026-10-10T06:55:30.943Z",
+          "note": "Order placed by customer"
+        }
+      ]
+    },
+    {
+      "id": "ord-sample-1",
+      "orderNumber": "SJ-2026-1001",
+      "createdAt": "2026-10-09T06:55:17.343Z",
+      "updatedAt": "2026-10-09T06:55:17.343Z",
+      "customerName": "Aarav Patel",
+      "customerEmail": "aarav@example.com",
+      "customerPhone": "9820011223",
+      "orderType": "Pickup",
+      "items": [
+        {
+          "productId": "prod-1",
+          "productName": "Classic Cappuccino",
+          "unitPrice": 195,
+          "quantity": 2,
+          "lineTotal": 390,
+          "imageUrl": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=800&q=80"
+        },
+        {
+          "productId": "prod-5",
+          "productName": "Butter Croissant",
+          "unitPrice": 165,
+          "quantity": 1,
+          "lineTotal": 165,
+          "imageUrl": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "subtotal": 555,
+      "taxRate": 0.05,
+      "taxAmount": 27.75,
+      "deliveryCharge": 0,
+      "discountAmount": 0,
+      "totalAmount": 582.75,
+      "paymentMethod": "Cash on pickup",
+      "paymentStatus": "Paid",
+      "orderStatus": "Completed",
+      "statusHistory": [
+        {
+          "status": "Pending",
+          "timestamp": "2026-10-09T06:55:17.343Z"
+        },
+        {
+          "status": "Confirmed",
+          "timestamp": "2026-10-09T07:25:17.343Z"
+        },
+        {
+          "status": "Ready for Pickup",
+          "timestamp": "2026-10-09T07:55:17.343Z"
+        },
+        {
+          "status": "Completed",
+          "timestamp": "2026-10-09T08:55:17.343Z"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "usr-admin-1",
+      "name": "Café Admin",
+      "email": "admin@sipandjoycafe.com",
+      "phone": "+91 98765 43210",
+      "role": "admin",
+      "createdAt": "2026-10-10T06:55:17.343Z",
+      "passwordHash": "463ae9f5002dc71d21c3138fb1e90d555c729dd5786c3d118edd5b50b9eaa199293945cca2a65d381081650a91a19732c68bf9d07b2d041a3f10b29237265a1b",
+      "salt": "bf8ceb82ffcd1f6b52c12960ae04c6bd"
+    }
+  ],
+  "contactMessages": [
+    {
+      "id": "msg-1",
+      "name": "Meera Kapoor",
+      "email": "meera@example.com",
+      "subject": "Event Booking Inquiry",
+      "message": "Hi Sip And Joy team! Do you host private book club meetups on Sunday mornings? Would love to book tables for 8 people.",
+      "createdAt": "2026-10-08T06:55:17.343Z",
+      "status": "read"
+    }
+  ],
+  "newsletterSubscribers": [
+    {
+      "id": "sub-1",
+      "email": "coffee.lover@example.com",
+      "subscribedAt": "2026-10-07T06:55:17.343Z",
+      "active": true,
+      "unsubscribeToken": "unsub-token-sample-123"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "customerName": "Ananya Sharma",
+      "rating": 5,
+      "comment": "The strawberry cheesecake and rose latte are dreamy! The soft pink ambiance makes it the sweetest spot in town.",
+      "date": "2026-09-18",
+      "productName": "Strawberry Cheesecake",
+      "isDemonstration": true
+    },
+    {
+      "id": "rev-2",
+      "customerName": "Rohan Mehta",
+      "rating": 5,
+      "comment": "Best classic cappuccino hands down. The roast is smooth, never bitter. Loved the seamless pickup ordering.",
+      "date": "2026-09-22",
+      "productName": "Classic Cappuccino",
+      "isDemonstration": true
+    },
+    {
+      "id": "rev-3",
+      "customerName": "Priya Iyer",
+      "rating": 5,
+      "comment": "Butter croissants are flaky perfection. The packaging for delivery was immaculate and still warm!",
+      "date": "2026-10-01",
+      "productName": "Butter Croissant",
+      "isDemonstration": true
+    }
+  ],
+  "settings": {
+    "cafeName": "Sip And Joy",
+    "announcementText": "Little moments, lovely sips. Welcome to Sip And Joy!",
+    "announcementEnabled": true,
+    "tagline": "Your Daily Dose of Happiness",
+    "phone": "+91 98765 43210",
+    "email": "hello@sipandjoycafe.com",
+    "address": "14 Blossom Boulevard, Rosewood Avenue, Bandra West, Mumbai 400050",
+    "openingHours": "Mon - Sun: 8:00 AM – 10:30 PM",
+    "deliveryEnabled": true,
+    "deliveryFee": 40,
+    "freeDeliveryThreshold": 500,
+    "taxPercentage": 5,
+    "socialInstagram": "https://instagram.com/sipandjoycafe",
+    "socialFacebook": "https://facebook.com/sipandjoycafe",
+    "socialTwitter": "https://twitter.com/sipandjoycafe",
+    "promoBannerText": "A Little Treat Makes Every Day Sweeter.",
+    "promoBannerActive": true,
+    "promoBannerSubtext": "Use code JOY15 for 15% off orders above ₹499",
+    "promoBannerCoupon": "JOY15"
+  }
+}

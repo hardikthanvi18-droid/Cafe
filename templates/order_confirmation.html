@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+    <div class="w-20 h-20 bg-[#FCE7EF] rounded-full flex items-center justify-center mx-auto text-3xl text-[#C96F91] mb-6 shadow-sm">
+        🌸
+    </div>
+    <span class="text-xs uppercase tracking-widest text-[#C96F91] font-bold">Hooray! Order Confirmed</span>
+    <h1 class="text-3xl font-serif font-bold text-[#3D3035] mt-2">Thank You For Your Joyful Order!</h1>
+    <p class="text-sm text-[#806F77] mt-2">We have received your order and our barista team is already preparing everything with immense love and care.</p>
+
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-[#F0DDE5] text-left mt-8 space-y-4 shadow-sm">
+        <div class="flex justify-between items-center border-b border-[#F0DDE5] pb-4">
+            <div>
+                <p class="text-xs text-[#806F77]">Order Reference Number</p>
+                <p class="text-base font-bold text-[#C96F91] font-mono">{{ order.order_number }}</p>
+            </div>
+            <span class="px-3 py-1 bg-[#FCE7EF] text-[#C96F91] rounded-full text-xs font-semibold">
+                {{ order.order_status }}
+            </span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 text-xs">
+            <div>
+                <span class="text-[#806F77]">Fulfillment:</span>
+                <p class="font-semibold text-[#3D3035]">{{ order.order_type }}</p>
+            </div>
+            <div>
+                <span class="text-[#806F77]">Payment:</span>
+                <p class="font-semibold text-[#3D3035]">{{ order.payment_method }} ({{ order.payment_status }})</p>
+            </div>
+        </div>
+
+        <div class="border-t border-[#F0DDE5] pt-4">
+            <h4 class="font-serif font-bold text-xs text-[#3D3035] mb-2">Items Ordered:</h4>
+            <div class="space-y-2">
+                {% for item in order.items %}
+                <div class="flex justify-between text-xs text-[#3D3035]">
+                    <span>{{ item.quantity }} × {{ item.product_name }}</span>
+                    <span class="font-semibold">₹{{ "%.2f"|format(item.line_total) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="border-t border-[#F0DDE5] pt-4 flex justify-between text-sm font-bold text-[#3D3035]">
+            <span>Total Paid / Payable</span>
+            <span class="text-[#C96F91]">₹{{ "%.2f"|format(order.total_amount) }}</span>
+        </div>
+    </div>
+
+    <div class="flex justify-center gap-4 mt-8">
+        <a href="{{ url_for('menu.menu_list') }}" class="px-6 py-2.5 bg-[#C96F91] text-white rounded-full text-xs font-semibold hover:bg-[#b05d7e]">Order More Treats</a>
+        <a href="{{ url_for('main.index') }}" class="px-6 py-2.5 bg-white border border-[#F0DDE5] text-[#3D3035] rounded-full text-xs font-semibold hover:bg-[#FFF5F8]">Return Home</a>
+    </div>
+</div>
+{% endblock %}

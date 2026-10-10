@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-4 py-16 text-center">
+    <div class="bg-white p-8 rounded-3xl border border-[#F0DDE5] space-y-4 shadow-sm">
+        <span class="text-3xl">💌</span>
+        <h1 class="text-2xl font-serif font-bold text-[#3D3035]">Unsubscribed</h1>
+        <p class="text-xs text-[#806F77]">The email <strong class="text-[#3D3035]">{{ email }}</strong> has been unsubscribed from Sip And Joy marketing emails. You can resubscribe anytime if you miss our sweet treats!</p>
+        <a href="{{ url_for('main.index') }}" class="inline-block mt-4 px-6 py-2 bg-[#C96F91] text-white text-xs font-semibold rounded-full">Return to Café</a>
+    </div>
+</div>
+{% endblock %}

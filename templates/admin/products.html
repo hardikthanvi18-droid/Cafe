@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-serif font-bold text-[#3D3035]">Catalog Management</h1>
+            <p class="text-xs text-[#806F77] mt-1">Add, update prices, and control availability for café treats.</p>
+        </div>
+        <a href="{{ url_for('admin.add_product') }}" class="px-5 py-2.5 bg-[#C96F91] text-white text-xs font-semibold rounded-full hover:bg-[#b05d7e]">
+            + Add New Product
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for prod in products %}
+        <div class="bg-white rounded-2xl border border-[#F0DDE5] p-4 flex gap-4 shadow-sm">
+            <img src="{{ prod.image_url }}" alt="{{ prod.name }}" class="w-24 h-24 object-cover rounded-xl">
+            <div class="flex-grow flex flex-col justify-between">
+                <div>
+                    <span class="text-[10px] text-[#C96F91] font-semibold">{{ prod.category.name if prod.category else '' }}</span>
+                    <h3 class="font-serif font-bold text-sm text-[#3D3035]">{{ prod.name }}</h3>
+                    <p class="text-xs font-bold text-[#3D3035] mt-1">₹{{ "%.2f"|format(prod.price) }}</p>
+                </div>
+
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-[11px] px-2 py-0.5 rounded-full font-medium {% if prod.is_available %}bg-emerald-50 text-emerald-700{% else %}bg-red-50 text-red-600{% endif %}">
+                        {{ 'In Stock' if prod.is_available else 'Out of Stock' }}
+                    </span>
+                    {% if prod.is_featured %}
+                    <span class="text-[11px] px-2 py-0.5 rounded-full font-medium bg-[#FCE7EF] text-[#C96F91]">
+                        Featured
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

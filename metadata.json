@@ -1,0 +1,6 @@
+{
+  "name": "Sip And Joy — Premium Café",
+  "description": "Cute, elegant, and modern café serving handcrafted coffee, tea, beverages, artisanal desserts, and savory treats with online ordering and admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

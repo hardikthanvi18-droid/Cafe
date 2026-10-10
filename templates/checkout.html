@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-serif font-bold text-[#3D3035] mb-8 text-center">Complete Your Order</h1>
+
+    <form method="POST" action="{{ url_for('orders.checkout') }}" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="md:col-span-2 space-y-6">
+            <!-- Customer Details -->
+            <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] space-y-4">
+                <h2 class="font-serif font-bold text-lg text-[#3D3035]">1. Contact Information</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-[#806F77] mb-1">Your Full Name *</label>
+                        <input type="text" name="customer_name" required value="{{ user.name if user else '' }}" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-[#806F77] mb-1">Email Address *</label>
+                        <input type="email" name="customer_email" required value="{{ user.email if user else '' }}" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Mobile Phone (for order updates) *</label>
+                    <input type="tel" name="customer_phone" required value="{{ user.phone if user else '' }}" placeholder="e.g. 9820011223" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                </div>
+            </div>
+
+            <!-- Fulfillment Type -->
+            <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] space-y-4">
+                <h2 class="font-serif font-bold text-lg text-[#3D3035]">2. Pickup or Delivery</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="border border-[#F0DDE5] p-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-[#C96F91]">
+                        <input type="radio" name="order_type" value="Pickup" checked class="text-[#C96F91]">
+                        <div>
+                            <p class="text-xs font-bold text-[#3D3035]">Café Pickup</p>
+                            <p class="text-[11px] text-[#806F77]">Ready in 15-20 mins (Free)</p>
+                        </div>
+                    </label>
+                    <label class="border border-[#F0DDE5] p-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-[#C96F91]">
+                        <input type="radio" name="order_type" value="Delivery" class="text-[#C96F91]">
+                        <div>
+                            <p class="text-xs font-bold text-[#3D3035]">Doorstep Delivery</p>
+                            <p class="text-[11px] text-[#806F77]">₹40 fee (Free above ₹500)</p>
+                        </div>
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Delivery Address (if Delivery selected)</label>
+                    <textarea name="delivery_address" rows="2" placeholder="House/Flat No, Street, Landmark, Pin code" class="w-full text-xs px-3 py-2 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">{{ user.address if user else '' }}</textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Special Notes / Dietary Preferences</label>
+                    <input type="text" name="notes" placeholder="e.g. Less sugar, extra napkins, oat milk if possible" class="w-full text-xs px-3 py-2 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                </div>
+            </div>
+
+            <!-- Payment Method -->
+            <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] space-y-4">
+                <h2 class="font-serif font-bold text-lg text-[#3D3035]">3. Payment Method</h2>
+                <div class="space-y-2">
+                    <label class="border border-[#F0DDE5] p-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-[#C96F91] block">
+                        <input type="radio" name="payment_method" value="Cash on pickup" checked class="text-[#C96F91]">
+                        <span class="text-xs font-medium text-[#3D3035]">Pay with Cash or UPI at Café Counter</span>
+                    </label>
+                    <label class="border border-[#F0DDE5] p-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-[#C96F91] block">
+                        <input type="radio" name="payment_method" value="Cash on delivery" class="text-[#C96F91]">
+                        <span class="text-xs font-medium text-[#3D3035]">Cash on Delivery (Courier)</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Summary -->
+        <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] shadow-sm h-fit space-y-4">
+            <h3 class="font-serif font-bold text-base text-[#3D3035]">Order Items ({{ calc.items|length }})</h3>
+            <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                {% for item in calc.items %}
+                <div class="flex justify-between text-xs py-1 border-b border-[#F0DDE5]">
+                    <div>
+                        <p class="font-medium text-[#3D3035]">{{ item.product.name }}</p>
+                        <p class="text-[11px] text-[#806F77]">{{ item.quantity }} × ₹{{ "%.2f"|format(item.unit_price) }}</p>
+                    </div>
+                    <span class="font-bold text-[#3D3035]">₹{{ "%.2f"|format(item.line_total) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="space-y-1.5 text-xs text-[#806F77] pt-2 border-t border-[#F0DDE5]">
+                <div class="flex justify-between">
+                    <span>Subtotal</span>
+                    <span class="text-[#3D3035]">₹{{ "%.2f"|format(calc.subtotal) }}</span>
+                </div>
+                {% if calc.discount_amount > 0 %}
+                <div class="flex justify-between text-emerald-600">
+                    <span>Discount</span>
+                    <span>- ₹{{ "%.2f"|format(calc.discount_amount) }}</span>
+                </div>
+                {% endif %}
+                <div class="flex justify-between">
+                    <span>GST (5%)</span>
+                    <span class="text-[#3D3035]">₹{{ "%.2f"|format(calc.tax_amount) }}</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between text-base font-bold text-[#3D3035] pt-3 border-t border-[#F0DDE5]">
+                <span>Total Amount</span>
+                <span class="text-[#C96F91]">₹{{ "%.2f"|format(calc.total) }}</span>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-[#C96F91] hover:bg-[#b05d7e] text-white font-semibold text-xs rounded-full shadow-md transition-colors mt-4">
+                Confirm & Place Order
+            </button>
+            <p class="text-[10px] text-center text-[#806F77]">By placing an order you agree to our Terms & Café Policies</p>
+        </div>
+    </form>
+</div>
+{% endblock %}

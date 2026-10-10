@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-widest text-[#C96F91] font-bold">We Love Hearing From You</span>
+        <h1 class="text-4xl font-serif font-bold text-[#3D3035] mt-1">Contact & Visit Us</h1>
+        <p class="text-sm text-[#806F77] mt-2">Have a question, feedback, or table inquiry? Drop us a note or drop by our café.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-[#F0DDE5] shadow-sm">
+            <h2 class="font-serif font-bold text-lg text-[#3D3035] mb-4">Send Us a Note</h2>
+            <form method="POST" action="{{ url_for('contact.contact') }}" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Your Name *</label>
+                    <input type="text" name="name" required class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Email Address *</label>
+                    <input type="email" name="email" required class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Subject *</label>
+                    <input type="text" name="subject" required placeholder="e.g. Catering, Feedback, Question" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-[#806F77] mb-1">Message *</label>
+                    <textarea name="message" rows="4" required class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]"></textarea>
+                </div>
+                <button type="submit" class="w-full py-3 bg-[#C96F91] text-white text-xs font-semibold rounded-full hover:bg-[#b05d7e] transition-colors shadow-sm">
+                    Submit Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Information & Location -->
+        <div class="space-y-6">
+            <div class="bg-[#FFF5F8] p-6 sm:p-8 rounded-3xl border border-[#F0DDE5] space-y-4">
+                <h3 class="font-serif font-bold text-lg text-[#3D3035]">Café Location & Hours</h3>
+                <div class="space-y-2 text-xs text-[#806F77]">
+                    <p><strong class="text-[#3D3035]">Address:</strong> 14 Blossom Boulevard, Rosewood Avenue, Bandra West, Mumbai 400050</p>
+                    <p><strong class="text-[#3D3035]">Phone:</strong> +91 98765 43210</p>
+                    <p><strong class="text-[#3D3035]">Email:</strong> hello@sipandjoycafe.com</p>
+                    <p><strong class="text-[#3D3035]">Hours:</strong> Monday – Sunday: 8:00 AM – 10:30 PM</p>
+                </div>
+            </div>
+
+            <!-- Visual Map Placeholder -->
+            <div class="h-64 rounded-3xl overflow-hidden border border-[#F0DDE5] bg-pink-50 relative flex items-center justify-center text-center p-6">
+                <div>
+                    <div class="text-3xl mb-2">📍</div>
+                    <p class="font-serif font-bold text-sm text-[#3D3035]">Sip And Joy Café</p>
+                    <p class="text-xs text-[#806F77] mt-1">Bandra West, Mumbai</p>
+                    <span class="inline-block mt-3 text-[11px] text-[#C96F91] border border-[#F8D7E5] px-3 py-1 rounded-full bg-white">
+                        Free Valet Parking Available
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

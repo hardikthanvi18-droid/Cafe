@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-12">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-serif font-bold text-[#3D3035]">My Order History</h1>
+            <p class="text-xs text-[#806F77] mt-1">Track your past coffee moments and treats</p>
+        </div>
+        <a href="{{ url_for('menu.menu_list') }}" class="px-4 py-2 bg-[#C96F91] text-white text-xs font-semibold rounded-full hover:bg-[#b05d7e]">
+            Order Now
+        </a>
+    </div>
+
+    {% if orders %}
+    <div class="space-y-4">
+        {% for order in orders %}
+        <div class="bg-white p-6 rounded-3xl border border-[#F0DDE5] shadow-sm">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 border-b border-[#F0DDE5] pb-4">
+                <div>
+                    <span class="text-xs text-[#806F77]">{{ order.created_at.strftime('%d %b %Y, %I:%M %p') }}</span>
+                    <h3 class="font-mono font-bold text-sm text-[#3D3035]">{{ order.order_number }}</h3>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 bg-[#FCE7EF] text-[#C96F91] rounded-full text-xs font-semibold">
+                        {{ order.order_status }}
+                    </span>
+                    <span class="text-xs text-[#806F77]">{{ order.order_type }}</span>
+                </div>
+            </div>
+
+            <div class="py-4 space-y-1.5 border-b border-[#F0DDE5]">
+                {% for item in order.items %}
+                <div class="flex justify-between text-xs text-[#3D3035]">
+                    <span>{{ item.quantity }} × {{ item.product_name }}</span>
+                    <span class="font-semibold">₹{{ "%.2f"|format(item.line_total) }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="pt-4 flex justify-between items-center text-xs">
+                <span class="text-[#806F77]">Payment: <strong class="text-[#3D3035]">{{ order.payment_method }} ({{ order.payment_status }})</strong></span>
+                <span class="text-sm font-bold text-[#C96F91]">Total: ₹{{ "%.2f"|format(order.total_amount) }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-16 bg-[#FFF5F8] rounded-3xl border border-[#F0DDE5]">
+        <p class="text-3xl mb-2">☕</p>
+        <h3 class="font-serif text-lg font-bold text-[#3D3035]">No orders placed yet</h3>
+        <p class="text-xs text-[#806F77] mt-1">Your joyful orders will appear right here once you explore our menu.</p>
+        <a href="{{ url_for('menu.menu_list') }}" class="inline-block mt-4 px-6 py-2 bg-[#C96F91] text-white text-xs font-semibold rounded-full">Explore Menu</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-md mx-auto px-4 py-16">
+    <div class="bg-white p-8 rounded-3xl border border-[#F0DDE5] shadow-sm">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-serif font-bold text-[#3D3035]">Create Your Account</h1>
+            <p class="text-xs text-[#806F77] mt-1">Join the Sip And Joy family for exclusive discounts and easy ordering.</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('auth.register') }}" class="space-y-4">
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Full Name *</label>
+                <input type="text" name="name" required placeholder="e.g. Maya Sen" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Email Address *</label>
+                <input type="email" name="email" required placeholder="maya@example.com" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Mobile Phone Number</label>
+                <input type="tel" name="phone" placeholder="9820011223" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Password (min 6 chars) *</label>
+                <input type="password" name="password" required minlength="6" placeholder="••••••••" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <button type="submit" class="w-full py-3 bg-[#C96F91] hover:bg-[#b05d7e] text-white text-xs font-semibold rounded-full shadow-md transition-colors">
+                Register & Start Sips
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-xs text-[#806F77]">
+            Already have an account?
+            <a href="{{ url_for('auth.login') }}" class="text-[#C96F91] font-semibold hover:underline">Log in here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

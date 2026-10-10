@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-12">
+    <div class="flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-serif font-bold text-[#3D3035]">My Account</h1>
+            <p class="text-xs text-[#806F77] mt-1">Manage your customer profile and preferences</p>
+        </div>
+        <a href="{{ url_for('orders.order_history') }}" class="px-4 py-2 border border-[#F8D7E5] bg-[#FFF5F8] text-[#C96F91] text-xs font-semibold rounded-full hover:bg-[#F8D7E5]">
+            View Past Orders →
+        </a>
+    </div>
+
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-[#F0DDE5] shadow-sm">
+        <form method="POST" action="{{ url_for('auth.account') }}" class="space-y-4">
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Full Name</label>
+                <input type="text" name="name" value="{{ user.name }}" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Email Address</label>
+                <input type="email" disabled value="{{ user.email }}" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] bg-gray-50 text-gray-500">
+                <span class="text-[10px] text-gray-400">Email cannot be changed directly</span>
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Phone Number</label>
+                <input type="tel" name="phone" value="{{ user.phone or '' }}" placeholder="9820011223" class="w-full text-xs px-3 py-2.5 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-[#806F77] mb-1">Default Delivery Address</label>
+                <textarea name="address" rows="3" placeholder="Enter your full doorstep delivery address" class="w-full text-xs px-3 py-2 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">{{ user.address or '' }}</textarea>
+            </div>
+            <button type="submit" class="py-2.5 px-6 bg-[#C96F91] text-white text-xs font-semibold rounded-full hover:bg-[#b05d7e]">
+                Save Profile Changes
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sip And Joy — Premium Café{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Tailwind via CDN for standalone Flask deployment if needed -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pink-light': '#FCE7EF',
+                        'pink-soft': '#F8D7E5',
+                        'rose-pale': '#FFF5F8',
+                        'rose-dark': '#C96F91',
+                        'text-main': '#3D3035',
+                        'text-muted': '#806F77',
+                        'border-pink': '#F0DDE5',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-[#3D3035] font-sans antialiased min-h-screen flex flex-col">
+    <!-- Announcement Bar -->
+    <div class="bg-[#F8D7E5] text-[#3D3035] py-2 px-4 text-center text-xs sm:text-sm font-medium tracking-wide">
+        Little moments, lovely sips. Welcome to Sip And Joy! 🌸 Free delivery on orders above ₹500
+    </div>
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#F0DDE5]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="{{ url_for('main.index') }}" class="flex items-center gap-2 group">
+                <span class="text-2xl font-serif font-bold text-[#C96F91] tracking-tight group-hover:text-[#3D3035] transition-colors">Sip And Joy</span>
+                <span class="text-xs bg-[#FCE7EF] text-[#C96F91] px-2 py-0.5 rounded-full font-sans font-medium">Café</span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-[#3D3035]">
+                <a href="{{ url_for('main.index') }}" class="hover:text-[#C96F91] transition-colors">Home</a>
+                <a href="{{ url_for('menu.menu_list') }}" class="hover:text-[#C96F91] transition-colors">Menu</a>
+                <a href="{{ url_for('main.about') }}" class="hover:text-[#C96F91] transition-colors">About</a>
+                <a href="{{ url_for('main.gallery') }}" class="hover:text-[#C96F91] transition-colors">Gallery</a>
+                <a href="{{ url_for('contact.contact') }}" class="hover:text-[#C96F91] transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="{{ url_for('cart.view_cart') }}" class="relative p-2 text-[#3D3035] hover:text-[#C96F91] transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    {% if session.get('cart') %}
+                    <span class="absolute -top-1 -right-1 bg-[#C96F91] text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold">
+                        {{ session.get('cart')|length }}
+                    </span>
+                    {% endif %}
+                </a>
+
+                {% if session.get('user_id') %}
+                <a href="{{ url_for('auth.account') }}" class="text-xs font-medium text-[#C96F91] border border-[#F8D7E5] px-3 py-1.5 rounded-full hover:bg-[#FFF5F8]">
+                    {{ session.get('user_name', 'Account') }}
+                </a>
+                <a href="{{ url_for('auth.logout') }}" class="text-xs text-[#806F77] hover:text-[#3D3035]">Logout</a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="text-sm font-medium text-[#3D3035] hover:text-[#C96F91]">Log In</a>
+                <a href="{{ url_for('auth.register') }}" class="text-xs font-semibold bg-[#C96F91] text-white px-4 py-2 rounded-full hover:bg-[#b05d7e] transition-colors">Join</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="max-w-7xl mx-auto px-4 mt-4 w-full">
+            {% for category, message in messages %}
+            <div class="p-3 mb-2 rounded-xl text-sm font-medium {% if category == 'danger' %}bg-red-50 text-red-700 border border-red-200{% elif category == 'success' %}bg-[#FFF5F8] text-[#C96F91] border border-[#F8D7E5]{% else %}bg-pink-50 text-[#3D3035] border border-[#F8D7E5]{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    {% endwith %}
+
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#FFF5F8] border-t border-[#F0DDE5] mt-16 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-3">
+                <span class="text-2xl font-serif font-bold text-[#C96F91]">Sip And Joy</span>
+                <p class="text-sm text-[#806F77] leading-relaxed">A modern pastel café crafting exquisite artisan coffee, delicate pastries, and comforting moments of pure happiness.</p>
+                <div class="text-xs text-[#806F77] pt-2">
+                    <p>Mon - Sun: 8:00 AM – 10:30 PM</p>
+                    <p>14 Blossom Boulevard, Bandra West, Mumbai</p>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-[#3D3035] mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-[#806F77]">
+                    <li><a href="{{ url_for('main.index') }}" class="hover:text-[#C96F91]">Home</a></li>
+                    <li><a href="{{ url_for('menu.menu_list') }}" class="hover:text-[#C96F91]">Our Full Menu</a></li>
+                    <li><a href="{{ url_for('main.about') }}" class="hover:text-[#C96F91]">Café Story</a></li>
+                    <li><a href="{{ url_for('main.gallery') }}" class="hover:text-[#C96F91]">Visual Gallery</a></li>
+                    <li><a href="{{ url_for('contact.contact') }}" class="hover:text-[#C96F91]">Find & Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-[#3D3035] mb-4">Customer Care</h4>
+                <ul class="space-y-2 text-sm text-[#806F77]">
+                    <li><a href="{{ url_for('orders.order_history') }}" class="hover:text-[#C96F91]">Order History</a></li>
+                    <li><a href="{{ url_for('main.privacy_policy') }}" class="hover:text-[#C96F91]">Privacy Policy</a></li>
+                    <li><a href="{{ url_for('main.terms') }}" class="hover:text-[#C96F91]">Terms & Conditions</a></li>
+                    <li><a href="{{ url_for('admin.login') }}" class="hover:text-[#C96F91]">Administrator Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-serif font-semibold text-[#3D3035] mb-4">Stay in the Loop!</h4>
+                <p class="text-xs text-[#806F77] mb-3">Get café updates, seasonal treats, and secret discounts delivered straight to your inbox.</p>
+                <form action="{{ url_for('contact.subscribe_newsletter') }}" method="POST" class="space-y-2">
+                    <input type="email" name="email" required placeholder="Enter your email" class="w-full text-xs px-3 py-2 rounded-xl border border-[#F0DDE5] focus:outline-none focus:border-[#C96F91]">
+                    <button type="submit" class="w-full text-xs font-medium bg-[#C96F91] text-white py-2 rounded-xl hover:bg-[#b05d7e] transition-colors">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-[#F0DDE5] flex flex-col sm:flex-row justify-between items-center text-xs text-[#806F77]">
+            <p>© 2026 Sip And Joy Café. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0">Crafted with love & rose petals</p>
+        </div>
+    </footer>
+</body>
+</html>
